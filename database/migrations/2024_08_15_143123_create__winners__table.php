@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('_winners_', function (Blueprint $table) {
-            
+        Schema::create('winners', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('city');
+            $table->string('country');
+            $table->softDeletes(); 
             $table->timestamps();
-            $table->string('nombre');
-            $table->string('cedula');
-            $table->string('telefono');
-            $table->string('correo');
-            
         });
     }
 

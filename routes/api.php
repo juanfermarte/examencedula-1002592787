@@ -1,19 +1,17 @@
 <?php
+use App\Http\Controllers\WinnerController;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+// Obtener ganadores con paginación
+Route::get('/winners', [WinnerController::class, 'index']);
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+// Generar 1000 ganadores aleatorios
+Route::post('/winners/generate', [WinnerController::class, 'generate']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Actualizar un ganador específico
+Route::put('/winners/{id}', [WinnerController::class, 'update']);
+
+// Eliminar un ganador (SoftDelete)
+Route::delete('/winners/{id}', [WinnerController::class, 'destroy']);
+
+// Restaurar un ganador eliminado
+Route::put('/winners/{id}/restore', [WinnerController::class, 'restore']);
